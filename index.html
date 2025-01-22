@@ -3,39 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Web Page</title>
+    <title>kutlu.io</title>
     <style>
+        :root {
+            --primary-color: #ffffff;
+            --background-color: #000000;
+            --accent-color: #4a90e2;
+            --transition-speed: 0.3s;
+            --tag-color: rgba(255, 255, 255, 0.7);
+        }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            font-family: 'SF Mono', 'Fira Code', monospace;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            line-height: 1.6;
         }
-        header, footer {
-            background-color: #f2f2f2;
-            padding: 20px;
+
+        #container {
+            margin-bottom: 2rem;
+            position: relative;
+            height: 6rem;
+            display: flex;
+            align-items: center;
+        }
+
+        #text {
+            display: inline;
+            font-size: clamp(3rem, 8vw, 6rem);
+            letter-spacing: -0.02em;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        #cursor {
+            display: inline-block;
+            width: 3px;
+            height: clamp(3rem, 8vw, 6rem);
+            background-color: var(--primary-color);
+            margin-left: 5px;
+            animation: blink 0.7s steps(1) infinite;
+            position: relative;
+            top: 0;
+        }
+
+        footer {
+            margin-top: 2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards;
             text-align: center;
         }
-        main {
-            flex: 1;
-            padding: 20px;
+
+        footer div {
+            margin: 0.5rem 0;
+        }
+
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 25px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        footer a:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        footer a svg {
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+        }
+
+        footer a:hover svg {
+            fill: var(--background-color);
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            color: var(--tag-color);
+            font-size: 0.9rem;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .tag:hover {
+            color: var(--primary-color);
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            footer {
+                margin-top: 1.5rem;
+            }
+            
+            footer a {
+                padding: 0.4rem 0.8rem;
+            }
+
+            .tags {
+                gap: 0.5rem;
+            }
+
+            .tag {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Simple Web Page</h1>
-    </header>
-    
-    <main>
-        <h2>Main Content Area</h2>
-        <p>This is where the main content of your web page goes. You can add text, images, and other elements here.</p>
-    </main>
-    
+    <div id="container">
+        <span id="text"></span><span id="cursor"></span>
+    </div>
     <footer>
-        <p>&copy; 2024 My Simple Web Page. All rights reserved.</p>
+        <div class="tags">
+            <span class="tag">#ai</span>
+            <span class="tag">#saas</span>
+            <span class="tag">#apps</span>
+            <span class="tag">#consultancy</span>
+        </div>
+        <div class="tagline">transform ideas into software products.</div>
+        <div>
+            <a href="mailto:contact@kutlu.io">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                get in touch
+            </a>
+        </div>
     </footer>
+    <script>
+        const textElement = document.getElementById('text');
+        const footerElement = document.querySelector('footer');
+        const textToType = "kutlu.io";
+        const typingSpeed = 120;
+
+        function typeText() {
+            textElement.textContent = "";
+            footerElement.style.opacity = 0;
+            let i = 0;
+
+            const typeChar = () => {
+                if (i < textToType.length) {
+                    textElement.textContent += textToType.charAt(i);
+                    i++;
+                    requestAnimationFrame(() => setTimeout(typeChar, typingSpeed));
+                } else {
+                    setTimeout(() => {
+                        footerElement.style.animation = "fadeIn 2s ease-in forwards";
+                    }, 500);
+                }
+            };
+
+            setTimeout(typeChar, 800);
+        }
+
+        document.addEventListener('DOMContentLoaded', typeText);
+    </script>
 </body>
 </html>
