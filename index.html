@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <title>kutlu.io</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <style>
         :root {
             --primary-color: #ffffff;
@@ -172,28 +172,34 @@
         const footerElement = document.querySelector('footer');
         const textToType = "kutlu.io";
         const typingSpeed = 120;
-
-        function typeText() {
-            textElement.textContent = "";
-            footerElement.style.opacity = 0;
-            let i = 0;
-
-            const typeChar = () => {
-                if (i < textToType.length) {
-                    textElement.textContent += textToType.charAt(i);
-                    i++;
-                    requestAnimationFrame(() => setTimeout(typeChar, typingSpeed));
-                } else {
-                    setTimeout(() => {
-                        footerElement.style.animation = "fadeIn 2s ease-in forwards";
-                    }, 500);
-                }
-            };
-
-            setTimeout(typeChar, 800);
+        const loopDelay = 5000; // 5 seconds
+        
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
         }
 
-        document.addEventListener('DOMContentLoaded', typeText);
+        async function typeText() {
+            textElement.textContent = "";
+            let i = 0;
+
+            // Type text
+            for (let char of textToType) {
+                textElement.textContent += char;
+                await sleep(typingSpeed);
+            }
+
+            // Wait for the remainder of the 5 seconds
+            await sleep(loopDelay - (textToType.length * typingSpeed));
+        }
+
+        async function startAnimation() {
+            footerElement.style.opacity = 1;
+            while (true) {
+                await typeText();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', startAnimation);
     </script>
 </body>
 </html>
