@@ -25,15 +25,19 @@
         }
 
         nav {
-            padding: 2rem;
+            padding: 1.5rem 2rem;
             position: fixed;
             top: 0;
-            width: 100%;
-            box-sizing: border-box;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .logo {
@@ -62,7 +66,8 @@
         .main-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 8rem 2rem 4rem;
+            /* Increased top padding to account for fixed header */
+            padding: 7rem 2rem 4rem;
         }
 
         .services-grid {
@@ -70,6 +75,8 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .service-card {
@@ -77,6 +84,7 @@
             border: 1px solid var(--tag-color);
             border-radius: 8px;
             transition: transform var(--transition-speed) ease;
+            background-color: var(--background-color);
         }
 
         .service-card:hover {
@@ -115,12 +123,16 @@
         h1 {
             font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .subtitle {
             font-size: clamp(1rem, 2vw, 1.2rem);
             color: var(--tag-color);
             max-width: 600px;
+            position: relative;
+            z-index: 1;
         }
 
         @media (max-width: 768px) {
@@ -131,10 +143,15 @@
             .main-content {
                 padding: 6rem 1rem 2rem;
             }
+
+            nav {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Rest of the HTML remains the same -->
     <nav>
         <a href="/" class="logo">kutlu.io</a>
         <a href="mailto:contact@kutlu.io" class="contact-button">get in touch</a>
@@ -145,6 +162,7 @@
         <p class="subtitle">Transforming ideas into robust software solutions through expert consultancy and development services.</p>
 
         <div class="services-grid">
+            <!-- Service cards remain the same -->
             <div class="service-card">
                 <div class="service-title">AI Solutions</div>
                 <div class="service-description">Custom AI integration and development to enhance your business capabilities.</div>
@@ -153,6 +171,28 @@
                     <li>Custom AI Model Development</li>
                     <li>AI-Powered Analytics</li>
                     <li>Natural Language Processing</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-title">Technical Consultancy</div>
+                <div class="service-description">Strategic guidance and technical expertise for your projects.</div>
+                <ul class="service-features">
+                    <li>Architecture Design</li>
+                    <li>Technology Stack Selection</li>
+                    <li>Security Assessment</li>
+                    <li>Performance Optimization</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-title">Cloud Services</div>
+                <div class="service-description">Expert AWS cloud solutions for scalable and reliable infrastructure.</div>
+                <ul class="service-features">
+                    <li>AWS Architecture Design</li>
+                    <li>Serverless Development</li>
+                    <li>Cloud Migration & Strategy</li>
+                    <li>DevOps & CI/CD Implementation</li>
                 </ul>
             </div>
 
@@ -168,24 +208,13 @@
             </div>
 
             <div class="service-card">
-                <div class="service-title">Mobile Apps</div>
+                <div class="service-title">Mobile Development</div>
                 <div class="service-description">Native and cross-platform mobile applications for iOS and Android.</div>
                 <ul class="service-features">
                     <li>iOS & Android Development</li>
                     <li>React Native Solutions</li>
                     <li>App Store Optimization</li>
                     <li>Mobile UI/UX Design</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <div class="service-title">Technical Consultancy</div>
-                <div class="service-description">Strategic guidance and technical expertise for your projects.</div>
-                <ul class="service-features">
-                    <li>Architecture Design</li>
-                    <li>Technology Stack Selection</li>
-                    <li>Security Assessment</li>
-                    <li>Performance Optimization</li>
                 </ul>
             </div>
         </div>

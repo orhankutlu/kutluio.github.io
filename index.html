@@ -29,27 +29,6 @@
             line-height: 1.6;
         }
 
-        nav {
-            position: fixed;
-            top: 0;
-            right: 0;
-            padding: 2rem;
-        }
-
-        nav a {
-            color: var(--primary-color);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--primary-color);
-            border-radius: 25px;
-            transition: all var(--transition-speed) ease;
-        }
-
-        nav a:hover {
-            background-color: var(--primary-color);
-            color: var(--background-color);
-        }
-
         #container {
             margin-bottom: 2rem;
             position: relative;
@@ -87,6 +66,14 @@
 
         footer div {
             margin: 0.5rem 0;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         footer a {
@@ -149,10 +136,6 @@
         }
 
         @media (max-width: 480px) {
-            nav {
-                padding: 1rem;
-            }
-
             footer {
                 margin-top: 1.5rem;
             }
@@ -168,13 +151,14 @@
             .tag {
                 font-size: 0.8rem;
             }
+
+            .buttons-container {
+                gap: 0.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="/services">services</a>
-    </nav>
     <div id="container">
         <span id="text"></span><span id="cursor"></span>
     </div>
@@ -186,12 +170,15 @@
             <span class="tag">#consultancy</span>
         </div>
         <div class="tagline">transform ideas into software products.</div>
-        <div>
+        <div class="buttons-container">
             <a href="mailto:contact@kutlu.io">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
                 get in touch
+            </a>
+            <a href="/services">
+                services
             </a>
         </div>
     </footer>
