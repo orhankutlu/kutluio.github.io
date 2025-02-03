@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | kutlu.io</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --background-color: #000000;
+            --accent-color: #4a90e2;
+            --transition-speed: 0.3s;
+            --tag-color: rgba(255, 255, 255, 0.7);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        nav {
+            padding: 2rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        .contact-button {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 25px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .contact-button:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            padding: 2rem;
+            border: 1px solid var(--tag-color);
+            border-radius: 8px;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .service-description {
+            color: var(--tag-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .service-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-features li::before {
+            content: "→";
+            margin-right: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--tag-color);
+            max-width: 600px;
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 6rem 1rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">kutlu.io</a>
+        <a href="mailto:contact@kutlu.io" class="contact-button">get in touch</a>
+    </nav>
+
+    <main class="main-content">
+        <h1>Services</h1>
+        <p class="subtitle">Transforming ideas into robust software solutions through expert consultancy and development services.</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-title">AI Solutions</div>
+                <div class="service-description">Custom AI integration and development to enhance your business capabilities.</div>
+                <ul class="service-features">
+                    <li>LLM Integration & Fine-tuning</li>
+                    <li>Custom AI Model Development</li>
+                    <li>AI-Powered Analytics</li>
+                    <li>Natural Language Processing</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-title">SaaS Development</div>
+                <div class="service-description">End-to-end SaaS solution development with scalable architecture.</div>
+                <ul class="service-features">
+                    <li>Cloud-Native Applications</li>
+                    <li>Subscription Management</li>
+                    <li>Multi-tenant Architecture</li>
+                    <li>API Development</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-title">Mobile Apps</div>
+                <div class="service-description">Native and cross-platform mobile applications for iOS and Android.</div>
+                <ul class="service-features">
+                    <li>iOS & Android Development</li>
+                    <li>React Native Solutions</li>
+                    <li>App Store Optimization</li>
+                    <li>Mobile UI/UX Design</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-title">Technical Consultancy</div>
+                <div class="service-description">Strategic guidance and technical expertise for your projects.</div>
+                <ul class="service-features">
+                    <li>Architecture Design</li>
+                    <li>Technology Stack Selection</li>
+                    <li>Security Assessment</li>
+                    <li>Performance Optimization</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

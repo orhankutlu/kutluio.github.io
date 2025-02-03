@@ -29,6 +29,27 @@
             line-height: 1.6;
         }
 
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 2rem;
+        }
+
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 25px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        nav a:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+
         #container {
             margin-bottom: 2rem;
             position: relative;
@@ -128,6 +149,10 @@
         }
 
         @media (max-width: 480px) {
+            nav {
+                padding: 1rem;
+            }
+
             footer {
                 margin-top: 1.5rem;
             }
@@ -147,6 +172,9 @@
     </style>
 </head>
 <body>
+    <nav>
+        <a href="/services">services</a>
+    </nav>
     <div id="container">
         <span id="text"></span><span id="cursor"></span>
     </div>
