@@ -3,218 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kutlu.io</title>
+    <title>Orhan Kutlu</title>
+    <meta name="description" content="Orhan Kutlu: engineering lead at 1-800-Flowers.com, tech consultant, and founder of Resmi Gazete. Based in Istanbul.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <style>
         :root {
-            --primary-color: #ffffff;
-            --background-color: #000000;
-            --accent-color: #4a90e2;
-            --transition-speed: 0.3s;
-            --tag-color: rgba(255, 255, 255, 0.7);
+            --bg: #fffdf9;
+            --ink: #22252a;
+            --muted: #6b7078;
+            --line: #ece7de;
+            --accent: #2f5fd0;
         }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #17181b;
+                --ink: #ececea;
+                --muted: #9a9ea6;
+                --line: #2a2c31;
+                --accent: #8fb0ff;
+            }
+        }
+
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            color: var(--primary-color);
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            line-height: 1.6;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
-        #container {
-            margin-bottom: 2rem;
-            position: relative;
-            height: 6rem;
-            display: flex;
-            align-items: center;
+        main {
+            max-width: 660px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem 5rem;
         }
 
-        #text {
-            display: inline;
-            font-size: clamp(3rem, 8vw, 6rem);
-            letter-spacing: -0.02em;
-            font-weight: 600;
-            line-height: 1;
+        h1 {
+            font-size: clamp(2.2rem, 6vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin: 0 0 1.4rem;
         }
 
-        #cursor {
-            display: inline-block;
-            width: 3px;
-            height: clamp(3rem, 8vw, 6rem);
-            background-color: var(--primary-color);
-            margin-left: 5px;
-            animation: blink 0.7s steps(1) infinite;
-            position: relative;
-            top: 0;
+        h2 {
+            font-size: 1.25rem;
+            letter-spacing: -0.01em;
+            margin: 3.2rem 0 1rem;
         }
 
-        footer {
-            margin-top: 2rem;
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            opacity: 0;
-            animation: fadeIn 2s ease-in forwards;
-            text-align: center;
-        }
+        p { margin: 0 0 1.1rem; }
 
-        footer div {
-            margin: 0.5rem 0;
-        }
+        .intro { font-size: 1.2rem; }
 
-        .buttons-container {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+        .muted { color: var(--muted); }
 
-        footer a {
-            color: var(--primary-color);
+            a {
+            color: var(--accent);
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--primary-color);
-            border-radius: 25px;
-            transition: all var(--transition-speed) ease;
+            border-bottom: 1px solid transparent;
         }
 
-        footer a:hover {
-            background-color: var(--primary-color);
-            color: var(--background-color);
-        }
+        a:hover { border-bottom-color: var(--accent); }
 
-        footer a svg {
-            margin-right: 8px;
-            width: 20px;
-            height: 20px;
-        }
+        ul { margin: 0; padding-left: 1.2rem; }
+        ul li { margin-bottom: 0.7rem; padding-left: 0.2rem; }
+        ul li::marker { color: var(--muted); }
 
-        footer a:hover svg {
-            fill: var(--background-color);
-        }
+        .project { margin-bottom: 1.8rem; }
+        .project h3 { font-size: 1.1rem; margin: 0 0 0.15rem; }
+        .project p { margin: 0; }
 
-        .tagline {
-            font-size: clamp(1rem, 1.5vw, 1.2rem);
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-        }
-
-        .tags {
+        .contact {
+            margin-top: 3.2rem;
+            padding-top: 1.6rem;
+            border-top: 1px solid var(--line);
             display: flex;
-            gap: 1rem;
+            gap: 1.4rem;
             flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .tag {
-            color: var(--tag-color);
-            font-size: 0.9rem;
-            transition: color var(--transition-speed) ease;
-        }
-
-        .tag:hover {
-            color: var(--primary-color);
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 480px) {
-            footer {
-                margin-top: 1.5rem;
-            }
-            
-            footer a {
-                padding: 0.4rem 0.8rem;
-            }
-
-            .tags {
-                gap: 0.5rem;
-            }
-
-            .tag {
-                font-size: 0.8rem;
-            }
-
-            .buttons-container {
-                gap: 0.5rem;
-            }
         }
     </style>
 </head>
 <body>
-    <div id="container">
-        <span id="text"></span><span id="cursor"></span>
+<main>
+    <h1>Hey, I'm Orhan.</h1>
+
+    <p class="intro">I lead engineering teams and build software products. Right now I'm leading an engineering team at 1-800-Flowers.com, working on Business Gifting &amp; Payments, and I also do tech consultancy on the side for teams building with AI. When there's time left, I build my own things. I'm based in Istanbul.</p>
+
+    <p class="muted">Ten-plus years in, mostly on cloud-native B2B and payments platforms. Before 1-800-Flowers I spent six years at SmartGift, growing from backend engineer to engineering lead. I started out building backend services for IoT energy devices, and I have a CS degree from Marmara University.</p>
+
+    <h2>What I'm good at</h2>
+    <ul>
+        <li><strong>Building and growing teams.</strong> Hiring, mentoring and setting up remote teams across time zones where backend, frontend, QA and DevOps work as one, with clear goals and honest feedback.</li>
+        <li><strong>Growing products, not just shipping features.</strong> Working with product on strategy and roadmap, and keeping delivery predictable as the company and the codebase grow.</li>
+        <li><strong>Distributed systems and cloud.</strong> Microservices, event-driven architecture, payments and high-throughput APIs, mostly Node.js, Postgres, Kafka and AWS. Observability and CI/CD included, because reliability is part of the job.</li>
+        <li><strong>AI in production.</strong> LLM integration, RAG and semantic search, taken from prototype to something people pay for.</li>
+        <li><strong>The messy middle.</strong> I'm a good fit for startups past the first prototype and growing into real scale, when the team, the architecture and the process all need to level up together.</li>
+    </ul>
+
+    <h2>Things I'm building</h2>
+    <p class="muted">I like trying new things. Some of these are bets, and some just teach me something.</p>
+
+    <div class="project">
+        <h3><a href="https://resmigazete.app" target="_blank" rel="noopener">Resmi Gazete ↗</a></h3>
+        <p>Turkey publishes new laws and regulations every day, and almost nobody has time to read them. I built an AI-powered way to search the Official Gazette, ask it questions and get alerted when something relevant to your work appears. It's made for accountants, lawyers and compliance teams.</p>
     </div>
-    <footer>
-        <div class="tags">
-            <span class="tag">#ai</span>
-            <span class="tag">#saas</span>
-            <span class="tag">#apps</span>
-            <span class="tag">#consultancy</span>
-        </div>
-        <div class="tagline">transform ideas into software products.</div>
-        <div class="buttons-container">
-            <a href="mailto:contact@kutlu.io">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                </svg>
-                get in touch
-            </a>
-            <a href="/services">
-                services
-            </a>
-        </div>
-    </footer>
-    <script>
-        const textElement = document.getElementById('text');
-        const footerElement = document.querySelector('footer');
-        const textToType = "kutlu.io";
-        const typingSpeed = 120;
-        const loopDelay = 5000; // 5 seconds
-        
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
 
-        async function typeText() {
-            textElement.textContent = "";
-            let i = 0;
+    <div class="project">
+        <h3><a href="https://apps.apple.com/tr/app/aqua-flow-water-reminder/id6759348234" target="_blank" rel="noopener">AquaFlow ↗</a></h3>
+        <p>An iOS hydration tracker where a little garden grows as you drink water. My experiment in consumer apps: HealthKit, a freemium model, and figuring out what actually gets people to install.</p>
+    </div>
 
-            // Type text
-            for (let char of textToType) {
-                textElement.textContent += char;
-                await sleep(typingSpeed);
-            }
+    <div class="project">
+        <h3><a href="https://apps.apple.com/tr/app/what-animal-toddler-game/id6818522939" target="_blank" rel="noopener">What Animal ↗</a></h3>
+        <p>A toddler game for iPhone and iPad. Match the animal, hear the sound, explore new worlds. Animals, sounds and scenes live in JSON, so adding a new world is cheap.</p>
+    </div>
 
-            // Wait for the remainder of the 5 seconds
-            await sleep(loopDelay - (textToType.length * typingSpeed));
-        }
+    <h2>Outside of work</h2>
+    <p>Away from the keyboard I play chess, work with leather, snowboard, dive and lift at the gym. And yes, I still end up tinkering with AI tools and small products in between.</p>
 
-        async function startAnimation() {
-            footerElement.style.opacity = 1;
-            while (true) {
-                await typeText();
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', startAnimation);
-    </script>
+    <div class="contact">
+        <!-- TODO: replace with your real LinkedIn URL -->
+        <a href="https://www.linkedin.com/in/REPLACE-WITH-YOUR-HANDLE" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://resmigazete.app" target="_blank" rel="noopener">Resmi Gazete ↗</a>
+        <a href="mailto:contact@kutlu.io">contact@kutlu.io</a>
+    </div>
+</main>
 </body>
 </html>
